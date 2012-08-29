@@ -1,0 +1,4 @@
+
+cofiguration for bashrc
+=============================
+just the note for the bashrc
