@@ -1,5 +1,25 @@
+# ottocho
+# 2013.12.07
 
-# for error input 
+# do nothing if running noninteractively
+[ -z "$PS1" ] && return
+
+shopt -s checkwinsize
+
+# set the PS1 and PS2 to hightlight the user
+if [ `whoami` = 'root' ]
+then
+    export PS1='[root@\h:\w] \$ '
+    # I hate motd
+    echo 'hello world' > /etc/motd
+else
+    export PS1='\u@\h:\w \$ '
+fi
+export PS2='> '
+
+alias ls='ls --color=auto'
+
+# for error input
 alias lsd='ls'
 alias sl='ls'
 alias sll='ls'
@@ -10,13 +30,17 @@ alias lks='ls'
 alias ks='ls'
 alias ccd='cd'
 alias cdd='cd'
+alias cdc='cd'
+alias vii='vim'
+alias vmm='vim'
+alias viim='vim'
 
 # some more ls aliases
-alias ll='ls -al'
-alias la='ls -a'
+alias ll='ls -ahl'
+alias la='ls -ha'
 alias l='ls -aCF'
-alias lt='ls -altFhi'
-alias lr='ls -alrtFhi'
+alias lt='ls -altFh'
+alias lr='ls -alrtFh'
 
 # quick access
 alias now="date +'%Y.%m.%d %H:%M:%S'"
@@ -24,25 +48,36 @@ alias a='./a.out'
 alias i='/sbin/ifconfig'
 alias d='du -sh'
 alias r='/usr/bin/irb --simple-prompt'
-alias py='python'
+alias py='ipython'
+alias ipy='ipython'
 alias cvt='cat -vt'
 alias path='echo -e ${PATH//:/\\n}'
-alias df='df -kTh'
+# alias df='df -kTh'
+alias df='df -h'
+alias vc='vim /etc/vim/vimrc'
+alias vb='vim /etc/bash.bashrc'
+alias .b='source /etc/bash.bashrc'
+alias v='vim'
 
-
-# quick cd 
+# quick cd
 alias ..='cd ..'
 alias ...='cd ../..'
 alias cdx='cd ~-'
-alias www='cd /home/www/'
 
-# vim cmd
-alias v='vim -R'
-alias vf='vimdiff'
+alias apc='cd /etc/httpd'
+alias ngc='cd /etc/nginx'
+alias www='cd /home/ottocho/www'
 
-# dangerous operations 
-alias cp='cp -i'
-alias mv='mv -i'
+# service shortcut
+alias aps='apachectl start'
+alias apr='apachectl restart'
+alias apt='apachectl stop'
+alias ngs='nginx'
+alias ngr='nginx -s reload'
+alias ngt='nginx -s stop'
+
+# backup the tmp file
+alias clean='mv -f *~ *.bak /home/ottocho/bak 2>/dev/null'
 
 # return the absoulte path
 function ap() {
@@ -72,12 +107,11 @@ function pf() {
 function mkcd() {
     if [[ $# -ne 1 ]]
     then
-        echo "Usage: mkcd dirname" 
+        echo "Usage: mkcd dirname"
         return 1
     fi
     dirname=$1
-    mkdir $dirname
-    cd $dirname
+    mkdir $dirname && cd $dirname
 }
 
 # uncomment the file
@@ -91,19 +125,26 @@ function uc() {
     cat $textfile | grep -v '^[\t ]*#\|^[\t ]*$'
 }
 
-alias apc='cd /etc/apache2'
-alias apr='apachectl restart'
-alias apl='cd /home/www/log'
+export PATH=$PATH:/home/ottocho/bin
 
-alias ngc='cd /etc/nginx'
-alias ngr='service nginx restart'
-alias ngl='cd /home/www/log'
+# dangerous operations
+alias rm='srm'
+alias rr='/bin/rm'
+alias cp='cp -i'
+alias mv='mv -i'
 
-alias myc='cd /etc/mysql'
-alias myr='service mysql restart'
-alias myl='cd /var/lib/mysql'
-alias ww='cd /home/www'
+# quickly change the locale
+# make a utf8 setting in /etc/profile.utf8
+# and a gb18030 setting in /etc/profile.gb18030
+alias gb='export LANG="en_US.GB18030" && echo "LANG=${LANG}"'
+alias utf='export LANG="en_US.UTF8" && echo "LANG=${LANG}"'
 
-alias rm='echo use rmrm instead'
-alias rmrm='/bin/rm -i'
-alias t='tail -f'
+# for lisp use
+alias clisp='clisp -q'
+alias lisp='clisp -q'
+
+alias apll='aptitude install'
+
+alias xpy='chmod +x *.py'
+
+source /etc/profile.d/rvm.sh
