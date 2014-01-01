@@ -1,5 +1,5 @@
 # ottocho
-# 2013.12.07
+# 2014.01.01
 
 # do nothing if running noninteractively
 [ -z "$PS1" ] && return
@@ -47,8 +47,8 @@ alias now="date +'%Y.%m.%d %H:%M:%S'"
 alias a='./a.out'
 alias i='/sbin/ifconfig'
 alias d='du -sh'
-alias r='/usr/bin/irb --simple-prompt'
-alias py='ipython'
+alias r='/usr/bin/env irb --simple-prompt'
+alias py='python'
 alias ipy='ipython'
 alias cvt='cat -vt'
 alias path='echo -e ${PATH//:/\\n}'
@@ -146,5 +146,7 @@ alias lisp='clisp -q'
 alias apll='aptitude install'
 
 alias xpy='chmod +x *.py'
+
+alias db='mysql -uroot -ptest test'
 
 source /etc/profile.d/rvm.sh
