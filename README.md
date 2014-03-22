@@ -2,6 +2,6 @@
 .bashrc
 =============================
 
-My configuration of bash.
+Configuration of bash.
 
 

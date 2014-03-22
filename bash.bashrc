@@ -1,5 +1,5 @@
 # ottocho
-# 2014.01.01
+# 2014.03.22
 
 # do nothing if running noninteractively
 [ -z "$PS1" ] && return
@@ -160,7 +160,6 @@ alias clisp='clisp -q'
 alias lisp='clisp -q'
 
 alias apll='aptitude install'
-
 
 alias db='mysql -uroot -ptest test'
 
