@@ -49,7 +49,8 @@ alias i='/sbin/ifconfig'
 alias d='du -sh'
 alias r='/usr/bin/env irb --simple-prompt'
 alias py='python'
-alias ipy='ipython'
+alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
+alias ipy='ipython --no-confirm-exit --classic --pprint'
 alias cvt='cat -vt'
 alias path='echo -e ${PATH//:/\\n}'
 # alias df='df -kTh'
@@ -63,7 +64,9 @@ alias v='vim'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias cdx='cd ~-'
-
+alias cl='cd /home/ottocho/src/lisp/'
+alias cr='cd /home/ottocho/src/rb/'
+alias ot='cd /home/ottocho/src/py/'
 alias apc='cd /etc/httpd'
 alias ngc='cd /etc/nginx'
 alias www='cd /home/ottocho/www'
@@ -150,3 +153,7 @@ alias xpy='chmod +x *.py'
 alias db='mysql -uroot -ptest test'
 
 source /etc/profile.d/rvm.sh
+
+
+
+
