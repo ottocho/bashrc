@@ -48,9 +48,6 @@ alias a='./a.out'
 alias i='/sbin/ifconfig'
 alias d='du -sh'
 alias r='/usr/bin/env irb --simple-prompt'
-alias py='python'
-alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
-alias ipy='ipython --no-confirm-exit --classic --pprint'
 alias cvt='cat -vt'
 alias path='echo -e ${PATH//:/\\n}'
 # alias df='df -kTh'
@@ -128,6 +125,22 @@ function uc() {
     cat $textfile | grep -v '^[\t ]*#\|^[\t ]*$'
 }
 
+# quick access python and ipython
+function py() {
+    if [[ $# -eq 0 ]]
+    then
+        ipython --no-confirm-exit --classic --pprint
+        return 0
+    else
+        python $@
+        return 0
+    fi
+}
+alias xpy='chmod +x *.py'
+alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
+alias ipy='ipython --no-confirm-exit --classic --pprint'
+# alias py='python'
+
 export PATH=$PATH:/home/ottocho/bin
 
 # dangerous operations
@@ -148,7 +161,6 @@ alias lisp='clisp -q'
 
 alias apll='aptitude install'
 
-alias xpy='chmod +x *.py'
 
 alias db='mysql -uroot -ptest test'
 
