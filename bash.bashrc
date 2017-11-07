@@ -31,7 +31,11 @@ export PS2='> '
 export PATH=$PATH:/home/ottocho/bin
 
 # import local command
-source /home/ottocho/.bashrc_cmd
+LOCALCMD='/home/ottocho/.bashrc_cmd'
+if [ -f $LOCALCMD ]
+then
+    source $LOCALCMD
+fi
 
 # ls color
 alias ls='ls --color=auto'
@@ -56,10 +60,10 @@ alias viim='vim'
 
 # some more ls aliases
 alias l='ls -aCF'
-alias ll='ls -ahl'
-alias la='ls -ha'
-alias lt='ls -altFh'
-alias lr='ls -alrtFh'
+alias ll='ls -aFhlt'
+alias la='ls -aFh'
+alias lt='ls -aFhlt'
+alias lr='ls -aFhlrt'
 
 # quick access
 alias now="date +'%Y-%m-%d %r'"
