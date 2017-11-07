@@ -1,5 +1,15 @@
+## bash.bashrc
+#
 # ottocho
-# 2014.03.22
+# 2017.11.07
+#
+# Usage: global bash config `/etc/bash.bashrc`
+# Compatibility: Debian
+#
+
+###############################################################################
+# Basic
+###############################################################################
 
 # do nothing if running noninteractively
 [ -z "$PS1" ] && return
@@ -17,9 +27,16 @@ else
 fi
 export PS2='> '
 
+# always import local toolkit
+export PATH=$PATH:/home/ottocho/bin
+
+# import local command
+source /home/ottocho/.bashrc_cmd
+
+# ls color
 alias ls='ls --color=auto'
 
-# for error input
+# typo
 alias lsd='ls'
 alias sl='ls'
 alias sll='ls'
@@ -31,53 +48,43 @@ alias ks='ls'
 alias ccd='cd'
 alias cdd='cd'
 alias cdc='cd'
+# alias v='vim'  #  v for vmware
+alias vi='vim'
 alias vii='vim'
 alias vmm='vim'
 alias viim='vim'
 
 # some more ls aliases
+alias l='ls -aCF'
 alias ll='ls -ahl'
 alias la='ls -ha'
-alias l='ls -aCF'
 alias lt='ls -altFh'
 alias lr='ls -alrtFh'
 
 # quick access
-alias now="date +'%Y.%m.%d %H:%M:%S'"
+alias now="date +'%Y-%m-%d %r'"
 alias a='./a.out'
 alias i='/sbin/ifconfig'
 alias d='du -sh'
-alias r='/usr/bin/env irb --simple-prompt'
 alias cvt='cat -vt'
 alias path='echo -e ${PATH//:/\\n}'
-# alias df='df -kTh'
 alias df='df -h'
-alias vc='vim /etc/vim/vimrc'
+
+# quick config vim/bash
+alias vc='vim ~/.vimrc'
 alias vb='vim /etc/bash.bashrc'
 alias .b='source /etc/bash.bashrc'
-alias v='vim'
 
 # quick cd
 alias ..='cd ..'
 alias ...='cd ../..'
 alias cdx='cd ~-'
-alias cl='cd /home/ottocho/src/lisp/'
-alias cr='cd /home/ottocho/src/rb/'
-alias ot='cd /home/ottocho/src/py/'
-alias apc='cd /etc/httpd'
-alias ngc='cd /etc/nginx'
-alias www='cd /home/ottocho/www'
 
-# service shortcut
-alias aps='apachectl start'
-alias apr='apachectl restart'
-alias apt='apachectl stop'
-alias ngs='nginx'
-alias ngr='nginx -s reload'
-alias ngt='nginx -s stop'
-
-# backup the tmp file
-alias clean='mv -f *~ *.bak /home/ottocho/bak 2>/dev/null'
+# quickly change the locale
+# make a utf8 setting in /etc/profile.utf8
+# and a gb18030 setting in /etc/profile.gb18030
+alias gb='export LANG="en_US.GB18030" && echo "LANG=${LANG}"'
+alias utf='export LANG="en_US.UTF8" && echo "LANG=${LANG}"'
 
 # return the absoulte path
 function ap() {
@@ -125,6 +132,39 @@ function uc() {
     cat $textfile | grep -v '^[\t ]*#\|^[\t ]*$'
 }
 
+###############################################################################
+# Dangerous Operations
+###############################################################################
+
+alias rm='srm'
+alias binrm='/bin/rm'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# backup the tmp file
+alias clean='mv -f *~ *.bak /home/ottocho/bak 2>/dev/null'
+
+###############################################################################
+# Appliation Operations
+###############################################################################
+
+# apache shortcut
+alias aps='apachectl start'
+alias apr='apachectl restart'
+alias apt='apachectl stop'
+alias apc='cd /etc/httpd'
+
+# nginx shortcut
+alias ngs='nginx'
+alias ngr='nginx -s reload'
+alias ngt='nginx -s stop'
+alias ngc='cd /usr/local/nginx/conf'
+alias serve='python -m SimpleHTTPServer'
+
+###############################################################################
+# Python
+###############################################################################
+
 # quick access python and ipython
 function py() {
     if [[ $# -eq 0 ]]
@@ -136,35 +176,24 @@ function py() {
         return 0
     fi
 }
+
 alias xpy='chmod +x *.py'
 alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
 alias ipy='ipython --no-confirm-exit --classic --pprint'
-# alias py='python'
 
-export PATH=$PATH:/home/ottocho/bin
-
-# dangerous operations
-alias rm='srm'
-alias rr='/bin/rm'
-alias cp='cp -i'
-alias mv='mv -i'
-
-# quickly change the locale
-# make a utf8 setting in /etc/profile.utf8
-# and a gb18030 setting in /etc/profile.gb18030
-alias gb='export LANG="en_US.GB18030" && echo "LANG=${LANG}"'
-alias utf='export LANG="en_US.UTF8" && echo "LANG=${LANG}"'
+###############################################################################
+# Lisp
+###############################################################################
 
 # for lisp use
 alias clisp='clisp -q'
 alias lisp='clisp -q'
 
-alias apll='aptitude install'
+###############################################################################
+# Ruby
+###############################################################################
 
-alias db='mysql -uroot -ptest test'
-
-source /etc/profile.d/rvm.sh
-
-
-
+# for ruby
+alias cr='cd /home/ottocho/src/rb/'
+alias r='/usr/bin/env irb --simple-prompt'
 
