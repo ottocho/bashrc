@@ -141,7 +141,7 @@ function uc() {
 ###############################################################################
 
 alias rm='srm'
-alias binrm='/bin/rm'
+alias binrm='/bin/rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
@@ -153,16 +153,18 @@ alias clean='mv -f *~ *.bak /home/ottocho/bak 2>/dev/null'
 ###############################################################################
 
 # apache shortcut
-alias aps='apachectl start'
-alias apr='apachectl restart'
-alias apt='apachectl stop'
-alias apc='cd /etc/httpd'
+alias aps='sudo systemctl start apache2.service'
+alias apr='sudo systemctl restart apache2.service'
+alias apt='sudo systemctl stop apache2.service'
+alias apc='cd /etc/apache2'
 
 # nginx shortcut
 alias ngs='nginx'
 alias ngr='nginx -s reload'
 alias ngt='nginx -s stop'
 alias ngc='cd /usr/local/nginx/conf'
+
+# quick static serve
 alias serve='python -m SimpleHTTPServer'
 
 ###############################################################################
@@ -184,6 +186,7 @@ function py() {
 alias xpy='chmod +x *.py'
 alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
 alias ipy='ipython --no-confirm-exit --classic --pprint'
+alias activate='source bin/activate'
 
 ###############################################################################
 # Lisp
@@ -201,3 +204,13 @@ alias lisp='clisp -q'
 alias cr='cd /home/ottocho/src/rb/'
 alias r='/usr/bin/env irb --simple-prompt'
 
+
+
+
+
+###############################################################################
+# Other
+###############################################################################
+
+
+alias n='cd /home/ottocho/current'
