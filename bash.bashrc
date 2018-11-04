@@ -57,6 +57,7 @@ alias vi='vim'
 alias vii='vim'
 alias vmm='vim'
 alias viim='vim'
+alias vo='vim -O'
 
 # some more ls aliases
 alias l='ls -aCF'
@@ -67,7 +68,6 @@ alias lr='ls -aFhlrt'
 
 # quick access
 alias now="date +'%Y-%m-%d %r'"
-alias a='./a.out'
 alias i='/sbin/ifconfig'
 alias d='du -sh'
 alias cvt='cat -vt'
@@ -205,12 +205,15 @@ alias cr='cd /home/ottocho/src/rb/'
 alias r='/usr/bin/env irb --simple-prompt'
 
 
-
-
-
 ###############################################################################
-# Other
+# Snippet
+# commands used frequently without alias
 ###############################################################################
 
+## to exclude annoying `node_modules`
+# grep --exclude-dir=node_modules --regexp='reg pattern like ^# +' -rl FILE
+# find . -path '*node_modules*' -prune -o -name 'shell pattern here like *.js' -print
+## watch command output change
+# watch -d -n 1 date
 
-alias n='cd /home/ottocho/current'
+
