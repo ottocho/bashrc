@@ -99,7 +99,7 @@ function ap() {
     fi
     for filename in $@
     do
-        python -c "import os; print os.path.abspath('$filename');"
+        python3 -c "import os; print(os.path.abspath('$filename'));"
     done
 }
 
@@ -165,7 +165,7 @@ alias ngt='nginx -s stop'
 alias ngc='cd /usr/local/nginx/conf'
 
 # quick static serve
-alias serve='python -m SimpleHTTPServer'
+alias serve='python3 -m http.server'
 
 ###############################################################################
 # Python
