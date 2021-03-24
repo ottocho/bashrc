@@ -11,10 +11,22 @@
 # Basic
 ###############################################################################
 
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
 # do nothing if running noninteractively
 [ -z "$PS1" ] && return
 
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
 
 # set the PS1 and PS2 to hightlight the user
 if [ `whoami` = 'root' ]
@@ -76,8 +88,8 @@ alias df='df -h'
 
 # quick config vim/bash
 alias vc='vim ~/.vimrc'
-alias vb='vim /etc/bash.bashrc'
-alias .b='source /etc/bash.bashrc'
+alias vb='vim ~/.bashrc'
+alias .b='source ~/.bashrc'
 
 # quick cd
 alias ..='cd ..'
@@ -136,6 +148,16 @@ function uc() {
     cat $textfile | grep -v '^[\t ]*#\|^[\t ]*$'
 }
 
+
+function llwhich() {
+    if [[ $# -ne 1 ]]
+    then
+        echo "Usage: llwhich name"
+        return 1
+    fi
+    ls -ahl `which $1`
+}
+
 ###############################################################################
 # Dangerous Operations
 ###############################################################################
@@ -159,10 +181,9 @@ alias apt='sudo systemctl stop apache2.service'
 alias apc='cd /etc/apache2'
 
 # nginx shortcut
-alias ngs='nginx'
-alias ngr='nginx -s reload'
-alias ngt='nginx -s stop'
-alias ngc='cd /usr/local/nginx/conf'
+alias ngr='sudo nginx -s reload'
+alias ngt='sudo nginx -s stop'
+alias ngc='cd /etc/nginx'
 
 # quick static serve
 alias serve='python3 -m http.server'
@@ -215,5 +236,3 @@ alias r='/usr/bin/env irb --simple-prompt'
 # find . -path '*node_modules*' -prune -o -name 'shell pattern here like *.js' -print
 ## watch command output change
 # watch -d -n 1 date
-
-
