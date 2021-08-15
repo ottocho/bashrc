@@ -233,6 +233,20 @@ alias lisp='clisp -q'
 alias cr='cd /home/ottocho/src/rb/'
 alias r='/usr/bin/env irb --simple-prompt'
 
+###############################################################################
+# Git
+###############################################################################
+
+# do not use checkout
+function git() {
+    if [ "$1" = "checkout" ]
+    then
+        echo "Don't use checkout; use switch or restore."
+        return 1
+    else
+        command git "$@"
+    fi
+}
 
 ###############################################################################
 # Snippet
