@@ -77,6 +77,14 @@ alias ll='ls -aFhlt'
 alias la='ls -aFh'
 alias lt='ls -aFhlt'
 alias lr='ls -aFhlrt'
+function llwhich() {
+    if [[ $# -ne 1 ]]
+    then
+        echo "Usage: llwhich name"
+        return 1
+    fi
+    ls -ahl `which $1`
+}
 
 # quick access
 alias now="date +'%Y-%m-%d %r'"
