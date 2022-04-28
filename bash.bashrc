@@ -170,10 +170,47 @@ function llwhich() {
 # Dangerous Operations
 ###############################################################################
 
-alias rm='srm'
-alias binrm='/bin/rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+function rm() {
+    if [[ "$#" -lt 1 ]]
+    then
+        echo "Usage: rm filenames"
+        return 1
+    fi
+
+    backup="${HOME}/bak"
+
+    if [[ ! -d $backup ]]
+    then
+        mkdir -p $backup
+        echo "Created backup folder: ${backup}"
+    fi
+
+
+    FILES="$@"
+    for file in $FILES
+    do
+        if [[ ! -e $file ]]
+        then
+            echo "rm: ${file}: No such file or directory"
+            continue
+        fi
+        target="${backup}/${file}"
+        if [[ -e $target ]]
+        then
+            td=$(date +'%Y%m%d.%H%M%S')
+            mv -f $target "${target}.${td}"
+        fi
+        mv $file $target
+        if [[ ! $? ]]
+        then
+            echo 'Cannot remove file.'
+            return 1
+        fi
+    done
+    return 0
+}
 
 # backup the tmp file
 alias clean='mv -f *~ *.bak /home/ottocho/bak 2>/dev/null'
