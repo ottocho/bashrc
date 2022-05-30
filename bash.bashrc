@@ -250,9 +250,9 @@ function py() {
 }
 
 alias xpy='chmod +x *.py'
-alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
-alias ipy='ipython --no-confirm-exit --classic --pprint'
 alias activate='source bin/activate'
+# alias cpyc="find . -name '*pyc' -exec rm -rf {} \;"
+# alias ipy='ipython --no-confirm-exit --classic --pprint'
 
 ###############################################################################
 # Lisp
@@ -267,23 +267,13 @@ alias lisp='clisp -q'
 ###############################################################################
 
 # for ruby
-alias cr='cd /home/ottocho/src/rb/'
-alias r='/usr/bin/env irb --simple-prompt'
+# alias r='/usr/bin/env irb --simple-prompt'
 
 ###############################################################################
 # Git
 ###############################################################################
 
 # do not use checkout
-function git() {
-    if [ "$1" = "checkout" ]
-    then
-        echo "Don't use checkout; use switch or restore."
-        return 1
-    else
-        command git "$@"
-    fi
-}
 
 ###############################################################################
 # Snippet
